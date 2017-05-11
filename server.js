@@ -1,33 +1,36 @@
-'use strict';
+//Library imports
+var express = require("express");
+var mongoose = require("mongoose");
+var passport = require("passport");
+var sass = require('node-sass-middleware');
 
-var express = require('express');
-var routes = require('./app/routes/index.js');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var session = require('express-session');
+//Routing module import
+var routes = require("./server/routes/routes.js");
 
+//Create app
 var app = express();
-require('dotenv').load();
-require('./app/config/passport')(passport);
 
-mongoose.connect(process.env.MONGO_URI);
-
-app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
-app.use('/public', express.static(process.cwd() + '/public'));
-app.use('/common', express.static(process.cwd() + '/app/common'));
-
-app.use(session({
-	secret: 'secretClementine',
-	resave: false,
-	saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-routes(app, passport);
-
-var port = process.env.PORT || 8080;
-app.listen(port,  function () {
-	console.log('Node.js listening on port ' + port + '...');
+//Set view engine
+app.set('view engine', 'jade');
+app.set('views', __dirname + '/client/');
+app.set('view options', {
+    layout: false
 });
+
+//Set sass middleware
+app.use(
+     sass({
+         src: __dirname + '/server/sass', 
+         dest: __dirname + '/client/css',
+         debug: false,       
+     })
+  ); 
+
+//Set static location
+app.use(express.static(__dirname + '/client'));
+
+//Route traffic
+routes(app);
+
+//Listen
+app.listen(process.env.PORT || 8080);

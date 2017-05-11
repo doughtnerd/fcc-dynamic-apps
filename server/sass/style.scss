@@ -1,0 +1,118 @@
+@mixin border-radius($width, $style, $color, $radius){
+  border:$width $style $color;
+  border-radius:$radius;
+}
+
+@mixin header-footer($type){
+  position:fixed;
+  background: rgba(0, 0, 0, 0.75);
+  width:100vw;
+  z-index:1;
+  @if($type==0){
+    top:0;
+  } @else {
+    bottom:0;
+  }
+}
+
+@keyframes spin{
+  to {transform: rotate(360deg)};
+}
+
+@keyframes forward{
+  33% {transform:scale(1.05)};
+  66% {transform:scale(1)};
+}
+
+body {
+  background-image: url("http://azuretwilight.org/images/themes/azure_twilight/background_space_purple.png");
+  font-family: sans-serif;
+  color: white;
+}
+
+.icon-button {
+  position:fixed;
+  cursor:pointer;
+  img{
+    @include border-radius(5px, solid, black, 50%);
+    width:50px;
+    height:50px;
+    background:rgba(white, .75);
+  }
+  &:hover{
+    img{
+      background:rgba(white, 1);
+    }
+    animation-name:spin;
+    animation-duration:.5s;
+  }
+}
+
+.menu-opener{
+  right:25px;
+  top:75px;
+}
+
+header {
+  @include header-footer(0);
+  h1 {
+    margin-top: 0px;
+  }
+}
+
+footer{
+  @include header-footer(1);
+  text-align:center;
+}
+
+.btn-login{
+  position:fixed;
+  right:5px;
+  top:5px;
+}
+
+.btn-add{
+  position:fixed;
+  right:45vw;
+  top:5px;
+}
+
+.main-panel{
+  position:relative;
+  top:50px;
+
+}
+
+.text-container{
+  text-align:center;
+}
+
+.poll{
+  display:inline-block;
+  background: rgba(0, 0, 0, 0.5);
+  margin:5px 5px 5px 5px;
+  &:hover{
+    animation-name:forward;
+    animation-duration: 1s;
+  }
+  h4{
+    text-align:center;
+  }
+  img{
+    width:25vw;
+    height:15vw;
+    margin-top:5px;
+  }
+  a{
+    text-decoration:none;
+    color:inherit;
+    &:hover{
+      color:purple;
+    }
+  }
+  p{
+    white-space: nowrap;
+    overflow: hidden;
+    width:25vw;
+  }
+}

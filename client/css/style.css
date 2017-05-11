@@ -1,0 +1,90 @@
+@keyframes spin {
+  to {
+    transform: rotate(360deg); } }
+
+@keyframes forward {
+  33% {
+    transform: scale(1.05); }
+  66% {
+    transform: scale(1); } }
+
+body {
+  background-image: url("http://azuretwilight.org/images/themes/azure_twilight/background_space_purple.png");
+  font-family: sans-serif;
+  color: white; }
+
+.icon-button {
+  position: fixed;
+  cursor: pointer; }
+  .icon-button img {
+    border: 5px solid black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.75); }
+  .icon-button:hover {
+    animation-name: spin;
+    animation-duration: .5s; }
+    .icon-button:hover img {
+      background: white; }
+
+.menu-opener {
+  right: 25px;
+  top: 75px; }
+
+header {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.75);
+  width: 100vw;
+  z-index: 1;
+  top: 0; }
+  header h1 {
+    margin-top: 0px; }
+
+footer {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.75);
+  width: 100vw;
+  z-index: 1;
+  bottom: 0;
+  text-align: center; }
+
+.btn-login {
+  position: fixed;
+  right: 5px;
+  top: 5px; }
+
+.btn-add {
+  position: fixed;
+  right: 45vw;
+  top: 5px; }
+
+.main-panel {
+  position: relative;
+  top: 50px; }
+
+.text-container {
+  text-align: center; }
+
+.poll {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 5px 5px 5px 5px; }
+  .poll:hover {
+    animation-name: forward;
+    animation-duration: 1s; }
+  .poll h4 {
+    text-align: center; }
+  .poll img {
+    width: 25vw;
+    height: 15vw;
+    margin-top: 5px; }
+  .poll a {
+    text-decoration: none;
+    color: inherit; }
+    .poll a:hover {
+      color: purple; }
+  .poll p {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 25vw; }

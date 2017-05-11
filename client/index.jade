@@ -1,0 +1,33 @@
+- var polls = pollList;//[{image:"http://azuretwilight.org/images/themes/azure_twilight/background_space_purple.png", link:"http://google.com", title:"test", description:"this is a long description this is a long description"}, {image:"http://azuretwilight.org/images/themes/azure_twilight/background_space_purple.png", link:"http://google.com", title:"test", description:"hello"}, {image:"http://azuretwilight.org/images/themes/azure_twilight/background_space_purple.png", link:"http://google.com", title:"test", description:"hello"}, {image:"http://azuretwilight.org/images/themes/azure_twilight/background_space_purple.png", link:"http://google.com", title:"test", description:"hello"}, {image:"http://azuretwilight.org/images/themes/azure_twilight/background_space_purple.png", link:"http://google.com", title:"test", description:"hello"}];
+- var logged = isLogged;
+
+mixin poll-item(poll)
+  li.poll
+    a(href=poll.link, target='_blank')
+      div.container-fluid
+        h4= poll.title
+        img(src=poll.image)
+        p= poll.description
+
+mixin icon(image)
+  div.icon-button(class!=attributes.class)
+    a
+      div
+        img(src=image)
+        
+html(lang='en')
+  head
+      title Voting App
+      link(rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+      link(rel="stylesheet" href="./style.css")
+  body
+    include header.jade
+    div.main-panel.container-fluid
+      -if(logged)
+        +icon("https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png")(class='menu-opener')
+      div.text-container Login to add new poll or click to view.
+      div.poll-container.container-fluid
+        ul
+          for val in polls
+            +poll-item(val)
+    include footer.jade
